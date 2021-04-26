@@ -12,7 +12,7 @@ const router = [
         path: prefix + '/list001',
         name: 'list001',
         meta: {
-          title: '预警规则设置',
+          title: '规划1',
           keeplive:true,
         },
         component: (resolve) => require(['@/views/vue_list/list001'], resolve),
@@ -21,7 +21,7 @@ const router = [
         path: prefix + '/list002',
         name: 'list002',
         meta: {
-          title: '预警规则设置-编辑',
+          title: '规划2',
           keeplive:true,
         },
         component: (resolve) => require(['@/views/vue_list/list002'], resolve),

@@ -1,8 +1,7 @@
 <template>
   <el-container class="home-global">
-    <!-- 侧边栏 -->
     <comHeader activeIndex="1"></comHeader>
-    <el-aside width="214px" style="margin-top:80px">    
+    <el-aside width="214px" style="margin-top:56px">    
       <el-menu
         unique-opened
         :collapse="false"
@@ -12,42 +11,25 @@
         text-color="#9e9fa4"
         active-text-color="#FFF"
       >
-        <!-- 一级菜单  -->
-        <template v-for="item in asideList">
-          <template v-if="item.children.length > 0">
-            <el-submenu :index="item.permissionValue" :key="item.id">
-              <!-- 一级菜单的模板区域 -->
-              <template slot="title">
-                <i :class="item.icon"></i>
-                <span >{{ item.name }}</span>
-              </template>
-              <!-- 二级菜单 -->
-              <el-menu-item
-                v-for="subItem in item.children"
-                :key="subItem.id"
-                :index="subItem.path"
-                :class="subItem.urlName.includes($route.name)?'is-active':''"
-                @click="saveNavState(subItem)"
-              >
-                <!-- 导航开启路由模式：将index值作为导航路由-->
-                <!-- 二级菜单的模板区域 -->
-                <template slot="title">
-                  <span>{{ subItem.name }}</span>
-                </template>
-              </el-menu-item>
-            </el-submenu>
+        <el-submenu :key="item.id" v-for="item in asideList" :index="item.name">
+          <!-- 一级菜单的模板区域 -->
+          <template slot="title">
+            <span >{{ item.name }}</span>
           </template>
-          <template v-else>
-            <el-menu-item 
-              :key="item.id"
-              :index="item.path"
-              :class="item.urlName.includes($route.name)?'is-active':''"
-              @click="saveNavState(item)">
-                <i :class="item.icon"></i>
-                <span >{{ item.name }}</span>
-            </el-menu-item>
-          </template>
-        </template>
+          <!-- 二级菜单 -->
+          <el-menu-item
+            v-for="subItem in item.children"
+            :key="subItem.id"
+            :index="subItem.name"
+            @click="saveNavState(subItem)"
+          >
+            <!-- 导航开启路由模式：将index值作为导航路由-->
+            <!-- 二级菜单的模板区域 -->
+            <template slot="title">
+              <span>{{ subItem.name }}</span>
+            </template>
+          </el-menu-item>
+        </el-submenu>
       </el-menu>
     </el-aside>
     <!-- 内容主体 -->
@@ -71,7 +53,6 @@ import comHeader from '@/components/header'
 import tagsView from '@/components/tagsView'
 import { getWindowHeight } from "@/utils/windowHeight";
 import { globalBus } from '@/utils/globalBus'
-// import { mapGetters } from 'vuex'
 import menus from '@/menus'
 export default {
   name:'HOME',
@@ -81,12 +62,8 @@ export default {
   },
   data() {
     return {
-      asideList:[],
       asideList:menus['vueMenus'],
-      // businessType:this.$route.query.businessType,
-      // productType:this.$route.query.productType,
       asideHeight:'',
-      // normalViews:['taskManagementListInfo','earlyWarningVerifyInfo','carManageInfo']
     }
   },
   created() {
@@ -95,14 +72,10 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if(this.normalViews.includes(to.name)){
-        this.$store.dispatch('updateVisitedViews', to)
-      }
       this.$refs['appScrollbar'].wrap.scrollTop = 0
     },
   },
   computed: {
-    // ...mapGetters(['menuInfo']),
     activePath () {
       return this.$route.path
     },
@@ -110,13 +83,9 @@ export default {
   methods: {
     // 保存连接的激活地址
     saveNavState(subItem) {
-      let self = this
-      self.$router.push({
+      console.log(subItem)
+      this.$router.push({
         path:subItem.path,
-        query:{
-          productType:self.productType,
-          businessType:self.businessTyp
-        }
       })
     },
     backTop() {
@@ -124,49 +93,72 @@ export default {
         this.$refs['appScrollbar'].wrap.scrollTop = 0
       })
     },
-    // //获取侧边栏
-    // setAsideInfo(){
-    //   this.menuInfo.forEach(element => {
-    //     if(element.permissionValue == 'plw:rule'){
-    //       this.asideList = element.children
-    //       this.getAside()
-    //     }
-    //   });
-    // },
-    //对侧边栏进行处理
-    // getAside(){
-    //   this.asideList.forEach((item,index) => {
-    //     this.asideList[index].name = item.name
-    //     this.asideList[index].path = this.getUrlInfo(item.permissionValue)
-    //     this.asideList[index].icon = ''
-    //     this.asideList[index].urlName = this.getUrlName(item.permissionValue)
-    //     this.asideList[index].children.forEach((item_2,index_2) => {
-    //       this.asideList[index].children[index_2].name = item_2.name
-    //       this.asideList[index].children[index_2].path = this.getUrlInfo(item_2.permissionValue)
-    //       this.asideList[index].children[index_2].icon = ''
-    //       this.asideList[index].children[index_2].urlName = this.getUrlName(item_2.permissionValue)
-    //       if(item_2.permissionValue == 'plw:rule:set:submit'){
-    //         this.$store.commit('menus/set_rulesButton',item_2.children)
-    //       }
-    //     })
-    //   })
-    // },
-    //地址
-    // getUrlInfo(permissionValue){
-    //   let tem 
-    //   this.asideListMenus.some((item) => {
-    //     if(item.permissionValue == permissionValue) tem = item.path
-    //   })
-    //   return tem
-    // },
-    // //对于urlName
-    // getUrlName(permissionValue){
-    //   let tem 
-    //   this.asideListMenus.some((item) => {
-    //     if(item.permissionValue == permissionValue) tem = item.urlName
-    //   })
-    //   return tem
-    // },
   },
 }
 </script>
+
+<style lang="less">
+.home-global{
+  height: 100%;
+  display: flex;
+  .el-aside {
+    position: fixed;
+    left: 0;
+    z-index: 2;
+    height: 100%;
+    background: #fff;
+    width: 214px;
+    flex: 0 0 214px;
+    .el-menu {
+      border: none;
+      background-color: #fff;
+      font-size: 14px;
+      .el-submenu__title{
+        font-weight: 500;
+        color: #242D33 !important;
+        text-align: left;
+        &:focus,&:focus>i,&:hover,&:hover>i,&.is-active,&.is-active>i{
+          color: #3E6EF6 !important;
+          background-color: initial;
+          outline: 0;
+        }
+      }
+      .el-menu-item{
+        font-weight: 500;
+        color: #242D33 !important;
+        text-align:left;
+        // i{
+        //   font-size: 14px;
+        //   margin-right: 8px;
+        //   margin-left: 12px;
+        //   color: #242D33 !important;
+        // }
+        &:focus,&:focus>i,&:hover,&:hover>i,&.is-active,&.is-active>i{
+          color: #3E6EF6 !important;
+          background-color: initial;
+          outline: 0;
+        }
+        // &:focus,&:focus>i,&:hover,&:hover>i,&.is-active,&.is-active>i{
+        //   color: #3E6EF6 !important;
+        //   background-color: #F5F9FF;
+        //   outline: 0;
+        // }
+      }
+    }
+  }
+  .el-main {
+    background-color: #F5F6F7;
+    min-width: 1100px;
+    display: inline-block;
+    padding: 0;
+    flex: 1;
+    margin-top: 80px;
+    margin-left: 214px;
+    .home-main{
+      margin-top: 50px;
+      overflow-y: auto;
+    }
+  }
+}
+
+</style>
