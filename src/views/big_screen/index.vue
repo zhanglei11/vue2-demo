@@ -6,7 +6,10 @@
         <el-col>
           <el-row class="task-list" :span="24">
             <el-col :span="6" class="list-image list-image-car" >
-              <span class="list-image-name" @click="checkedRetail(1)">锡车贷</span>
+              <span class="list-image-name" @click="checkedRetail(1)">大屏1</span>
+            </el-col>
+            <el-col :span="6" class="list-image list-image-car" >
+              <span class="list-image-name" @click="checkedRetail(2)">大屏2</span>
             </el-col>
             <!-- <el-col :span="6" class="list-image list-image-house" >
               <span class="list-image-name">锡房贷</span>
@@ -35,6 +38,11 @@ export default {
         case 1:
           this.$router.push({
             path:'/big_screen/xs/index',
+          })
+          break;
+        case 2:
+          this.$router.push({
+            path:'/big_screen/xs2/index',
           })
           break;
       }

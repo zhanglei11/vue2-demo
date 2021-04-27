@@ -27,6 +27,15 @@ const router = [
         },
         component: (resolve) => require(['@/views/big_screen/bigScreen/index'], resolve),
       },
+      {
+        path: prefix + '/xs2/index',
+        name: 'bigScreenShow',
+        meta: {
+          title: '大数据展板2',
+          keeplive:false,
+        },
+        component: (resolve) => require(['@/views/big_screen/bigScreen2/index'], resolve),
+      },
       // {
       //   path: prefix + '/list002',
       //   name: 'list002',

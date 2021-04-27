@@ -9,6 +9,18 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+
+// 按需引入vue-awesome图标
+import Icon from 'vue-awesome/components/Icon';
+import 'vue-awesome/icons/chart-bar.js';
+import 'vue-awesome/icons/chart-area.js';
+import 'vue-awesome/icons/chart-pie.js';
+import 'vue-awesome/icons/chart-line.js';
+import 'vue-awesome/icons/align-left.js';
+
+// 全局注册图标
+Vue.component('icon', Icon);
+
 //引入百度地图
 import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
@@ -26,9 +38,11 @@ Vue.prototype.$echarts = echarts;
 //引入中国地图
 import 'echarts/map/js/china.js'
 
-
 // 适配flex
-// import '@/utils/flexible.js';
+import '@/utils/flexible.js';
+// 引入全局css
+import '@/assets/scss/style.scss';
+
 import '@/utils/china.js';
 
 Vue.config.productionTip = false

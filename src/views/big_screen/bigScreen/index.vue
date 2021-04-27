@@ -1,41 +1,41 @@
 <template>
-<div :style="{height:asideHeight+'px'}" class="big-screen">
-  <dv-full-screen-container>
-    <el-row :span="24" class="big-screen">
-      <el-col class="big-screen-total" :span="24">
-        <el-row :span="24">
-          <el-col :span="8" class="first">
-            <div></div>
-          </el-col>
-          <el-col :span="8" class="second">
-            <div>银行管理驾驶舱</div>
-          </el-col>
-          <el-col :span="8" class="three">
-            金易求精 锡望无限 
-            <i :class="isFullscreen?'icon-resize-full-alt':'icon-resize-full-alt'" @click="click"></i>
-          </el-col>
-        </el-row>
-      </el-col>
+  <div :style="{height:asideHeight+'px'}" class="big-screen">
+    <dv-full-screen-container>
+      <el-row :span="24" class="big-screen">
+        <el-col class="big-screen-total" :span="24">
+          <el-row :span="24">
+            <el-col :span="8" class="first">
+              <!-- <div></div> -->
+            </el-col>
+            <el-col :span="8" class="second">
+              <div>银行管理驾驶舱</div>
+            </el-col>
+            <el-col :span="8" class="three">
+              金易求精 锡望无限 
+              <i :class="isFullscreen?'el-icon-aim':'el-icon-rank'" @click="click"></i>
+            </el-col>
+          </el-row>
+        </el-col>
 
-      <el-col class="big-screen-buttom" :span="24">
-        <el-row :span="24" :gutter="20">
-          <el-col :span="7">
-            <CenterLeft1 />
-            <CenterLeft2 />
-          </el-col>
-          <el-col :span="10">
-            <CenterTop />
-            <CenterBottom />
-          </el-col>
-          <el-col :span="7">
-            <CenterRight1 />
-            <CenterRight2 />
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
-  </dv-full-screen-container>
-</div>
+        <el-col class="big-screen-buttom" :span="24">
+          <el-row :span="24" :gutter="20">
+            <el-col :span="7">
+              <CenterLeft1 />
+              <CenterLeft2 />
+            </el-col>
+            <el-col :span="10">
+              <CenterTop />
+              <CenterBottom />
+            </el-col>
+            <el-col :span="7">
+              <CenterRight1 />
+              <CenterRight2 />
+            </el-col>
+          </el-row>
+        </el-col>
+      </el-row>
+    </dv-full-screen-container>
+  </div>
 </template>
 <script>
 import { getWindowHeight } from "@/utils/windowHeight";
@@ -46,10 +46,8 @@ import CenterBottom from "./components/centerBottom";
 import CenterRight1 from "./components/centerRight1";
 import CenterRight2 from "./components/centerRight2";
 import screenfull from 'screenfull'
-// import comHeader from '@/components/header'
 export default {
   components:{
-    // comHeader,
     CenterLeft1,
     CenterLeft2,
     CenterTop,
@@ -65,7 +63,7 @@ export default {
   },
 
   created() {
-    this.asideHeight = getWindowHeight();
+    this.asideHeight = getWindowHeight() - 200;
   },
   mounted () {
     this.init()

@@ -1,5 +1,6 @@
 <template>
   <dv-border-box-12 id="centreLeft1">
+    <!-- <dv-decoration-10 style="width:90%;height:5px;" /> -->
     <el-row>
       <el-col class="rol-title">
         <span class="toAD" v-for="(item, index) in toDayLocusCountArr" :key="index">
