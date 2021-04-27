@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-11-30 13:41:50
- * @LastEditTime: 2020-12-18 10:02:37
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /postloan-warning-front/src/views/big_screen/components/centerRight1.vue
--->
 <template>
   <dv-border-box-12 id="centerRight1">
     <el-row >
@@ -49,9 +41,6 @@
 </template>
 
 <script>
-import {
-  data_open_visit, //案件列表
-} from "@/api/bigData";
 import './index.less'
 export default {
   data() {
@@ -76,18 +65,8 @@ export default {
   },
   methods: {
     init(){
-      data_open_visit().then((res) => {
-        if (res.returnCode == "200") {
-          this.totalData = String(res.returnData.total).split('')
-          this.todayData = String(res.returnData.today).split('')
-        } else {
-          this.$message({
-            message: !!!res.userMessage?'服务异常':res.userMessage,
-            type: 'error',
-            duration:1000
-          });
-        }
-      }).catch(() => {});
+      this.totalData = String(parseInt(Math.random()*(10000),10)).split('')
+      this.todayData = String(parseInt(Math.random()*(1000),10)).split('')
     }
   }
 };

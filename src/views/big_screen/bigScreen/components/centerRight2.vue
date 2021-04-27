@@ -1,12 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-11-30 14:00:39
- * @LastEditTime: 2020-12-18 10:02:13
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /postloan-warning-front/src/views/big_screen/components/centerRight2.vue
--->
-
 <template>
   <dv-border-box-12 id="centerRight2">
     <el-row class="title">
@@ -23,65 +14,38 @@
     </el-row>
     <el-row class="list">
       <el-col>
-        <span>今日新增预警案件</span>
+        <span>新增预警案件</span>
         <span class="progress">
-          <div class="first">
-            <div
-              class="progress_sss"
-              v-for="(item, index) in firstList"
-              :key="'first' + index"
-            ></div>
-          </div>
-          {{ todayNew }}
+          <dv-decoration-3 style="width:120px;height:30px;" />
         </span>
+        {{ todayNew }}
       </el-col>
       <el-col>
-        <span>今日完成预警案件</span>
+        <span>完成预警案件</span>
         <span class="progress">
-          <div class="second">
-            <div
-              class="progress_sss"
-              v-for="(item, index) in secondList"
-              :key="'first' + index"
-            ></div>
-          </div>
-          {{ todayOver }}
+          <dv-decoration-3 style="width:120px;height:30px;" />
         </span>
+        {{ todayOver }}
       </el-col>
       <el-col>
-        <span>今日待完成预警案件</span>
+        <span>待完成预警案件</span>
         <span class="progress">
-          <div class="three">
-            <div
-              class="progress_sss"
-              v-for="(item, index) in threeList"
-              :key="'first' + index"
-            ></div>
-          </div>
-          {{ todayNewAndUnOver }}
+          <dv-decoration-3 style="width:120px;height:30px;" />
         </span>
+        {{ todayNewAndUnOver }}
       </el-col>
       <el-col>
-        <span>进行中的预警案件</span>
+        <span>进行中预警案件</span>
         <span class="progress">
-          <div class="four">
-            <div
-              class="progress_sss"
-              v-for="(item, index) in fourList"
-              :key="'first' + index"
-            ></div>
-          </div>
-          {{ totalUnOver }}
+          <dv-decoration-3 style="width:120px;height:30px;" />
         </span>
+        {{ totalUnOver }}
       </el-col>
     </el-row>
   </dv-border-box-12>
 </template>
 
 <script>
-import {
-  data_open_workOrder, //案件列表
-} from '@/api/bigData'
 import './index.less'
 export default {
   data() {
@@ -100,7 +64,6 @@ export default {
     }
   },
   created() {
-    console.log('centerRight2')
     this.init()
   },
   mounted() {
@@ -114,21 +77,11 @@ export default {
   },
   methods: {
     init() {
-      data_open_workOrder().then((res) => {
-        if (res.returnCode == '200') {
-          this.todayNew = res.returnData.todayNew
-          this.todayOver = res.returnData.todayOver
-          this.todayNewAndUnOver = res.returnData.todayNewAndUnOver
-          this.totalUnOver = res.returnData.totalUnOver
-          this.totalOverArr = String(res.returnData.totalOver).split('')
-        } else {
-          this.$message({
-            message: !!!res.userMessage?'服务异常':res.userMessage,
-            type: 'error',
-            duration:1000
-          });
-        }
-      }).catch(() => {});
+      this.todayNew = parseInt(Math.random()*(100),10)
+      this.todayOver = parseInt(Math.random()*(100),10)
+      this.todayNewAndUnOver = parseInt(Math.random()*(100),10)
+      this.totalUnOver = parseInt(Math.random()*(100),10)
+      this.totalOverArr = String(parseInt(Math.random()*(100),10)).split('')
     },
   },
 }
@@ -149,7 +102,7 @@ export default {
     }
   }
   .list {
-    font-size: 24px;
+    font-size: 18px;
     margin-top: 120px;
     padding: 0 20px;
     & > .el-col {
@@ -157,45 +110,17 @@ export default {
       height: 32px;
       line-height: 32px;
       & > span {
-        &:first-child {
-          width: 170px;
-          font-size: 18px;
-          display: inline-block;
-        }
-      }
-      .img {
-        margin: 0 10px;
+        // &:first-child {
+        //   width: 120px;
+        //   font-size: 18px;
+        //   display: inline-block;
+        // }
       }
       .progress {
         height: 32px;
         display: inline-block;
         vertical-align: middle;
         margin-left: 10px;
-        & > div {
-          &.first {
-            width: 230px;
-          }
-          &.second {
-            width: 198px;
-          }
-          &.three {
-            width: 165px;
-          }
-          &.four {
-            width: 134px;
-          }
-          height: 24px;
-          display: inline-block;
-          font-size: 0;
-          background: linear-gradient(to right, #6cebf3, #ffffff 100);
-          .progress_sss {
-            height: 100%;
-            width: 2px;
-            background: #020950;
-            display: inline-block;
-            margin-left: 6px;
-          }
-        }
       }
       
     }

@@ -8,7 +8,7 @@
             <div></div>
           </el-col>
           <el-col :span="8" class="second">
-            <div>无锡锡商银行管理驾驶舱</div>
+            <div>银行管理驾驶舱</div>
           </el-col>
           <el-col :span="8" class="three">
             金易求精 锡望无限 

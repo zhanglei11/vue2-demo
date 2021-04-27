@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-12-17 08:45:02
- * @LastEditTime: 2020-12-18 10:01:59
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /postloan-warning-front/src/views/big_screen/components/centerTop.vue
--->
 <template>
   <div id="centretop">
     <el-row >
@@ -31,9 +23,6 @@
 </template>
 <script>
 import EchratsMap from "./echratsMap";
-import {
-  data_open, //案件列表
-} from "@/api/bigData";
 import './index.less'
 export default {
   data() {
@@ -60,17 +49,7 @@ export default {
   },
   methods: {
     init(){
-      data_open().then((res) => {
-        if (res.returnCode == "200") {
-          this.vehicleCountArr = String(res.returnData.vehicleCount).split('')
-        } else {
-          this.$message({
-            message: !!!res.userMessage?'服务异常':res.userMessage,
-            type: 'error',
-            duration:1000
-          });
-        }
-      })
+      this.vehicleCountArr = String(parseInt(Math.random()*(1000),10)).split('')
     }
   }
 };

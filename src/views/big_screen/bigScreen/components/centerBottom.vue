@@ -4,9 +4,7 @@
     <el-row :span="24">
       <el-col :span="6">
         <el-col class="first-img"><img src="../img/vehicleCount.png" alt=""></el-col>
-        <el-col class="second-num">
-          {{deviceCount}}
-          </el-col>
+        <el-col class="second-num">{{deviceCount}}</el-col>
         <el-col class="three-title">平台设备总数(台)</el-col>
       </el-col>
       <el-col :span="6">
@@ -28,9 +26,6 @@
   </dv-border-box-12> 
 </template>
 <script>
-import {
-  data_open, //案件列表
-} from "@/api/bigData";
 export default {
   data() {
     return {
@@ -42,7 +37,6 @@ export default {
     };
   },
   created(){
-    console.log("centerBottom");
     this.init()
   },
   mounted() {
@@ -56,20 +50,10 @@ export default {
   },
   methods: {
     init(){
-      data_open().then((res) => {
-        if (res.returnCode == "200") {
-          this.deviceCount = res.returnData.deviceCount
-          this.onlineRate = res.returnData.onlineRate
-          this.toDayAddVehicle = res.returnData.toDayAddVehicle
-          this.toDayAlarmCount = res.returnData.toDayAlarmCount
-        } else {
-          this.$message({
-            message: !!!res.userMessage?'服务异常':res.userMessage,
-            type: 'error',
-            duration:1000
-          });
-        }
-      }).catch(() => {});
+      this.deviceCount = parseInt(Math.random()*(100),10)
+      this.onlineRate = parseInt(Math.random()*(100),10)
+      this.toDayAddVehicle = parseInt(Math.random()*(100),10)
+      this.toDayAlarmCount = parseInt(Math.random()*(100),10)
     }
   }
 };

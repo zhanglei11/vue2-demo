@@ -5,13 +5,9 @@
     </div>
   </div>
 </template>
-
 <script>
 import { mapOption } from '@/config/mapOption'
 import detail from '@/utils/china.json'
-import {
-  data_open_province, //案件列表
-} from '@/api/bigData'
 export default {
   name: 'china',
   components: {},
@@ -50,14 +46,44 @@ export default {
     initEcharts() {
       //地图容器
       this.chart = this.$echarts.init(document.getElementById('map'))
-      data_open_province().then((res) => {
-        if (res.returnCode == '200') {
-          this.data = res.returnData
-          this.requestGetChinaJson()
-        } else {
-          this.$message.error(res.userMessage==null?'服务异常':res.userMessage)
-        }
-      }).catch(() => {});
+      this.data = 
+      [
+        {"provinceCode":350000,"province":"福建省","vehicleCount":0},
+        {"provinceCode":540000,"province":"西藏自治区","vehicleCount":0},
+        {"provinceCode":520000,"province":"贵州省","vehicleCount":0},
+        {"provinceCode":310000,"province":"上海市","vehicleCount":0},
+        {"provinceCode":430000,"province":"湖南省","vehicleCount":0},
+        {"provinceCode":440000,"province":"广东省","vehicleCount":1},
+        {"provinceCode":420000,"province":"湖北省","vehicleCount":0},
+        {"provinceCode":820000,"province":"澳门特别行政区","vehicleCount":0},
+        {"provinceCode":810000,"province":"香港特别行政区","vehicleCount":0},
+        {"provinceCode":510000,"province":"四川省","vehicleCount":0},
+        {"provinceCode":340000,"province":"安徽省","vehicleCount":0},
+        {"provinceCode":650000,"province":"新疆维吾尔自治区","vehicleCount":0},
+        {"provinceCode":320000,"province":"江苏省","vehicleCount":0},
+        {"provinceCode":220000,"province":"吉林省","vehicleCount":0},
+        {"provinceCode":640000,"province":"宁夏回族自治区","vehicleCount":0},
+        {"provinceCode":130000,"province":"河北省","vehicleCount":50},
+        {"provinceCode":410000,"province":"河南省","vehicleCount":0},
+        {"provinceCode":450000,"province":"广西壮族自治区","vehicleCount":0},
+        {"provinceCode":460000,"province":"海南省","vehicleCount":0},
+        {"provinceCode":360000,"province":"江西省","vehicleCount":0},
+        {"provinceCode":500000,"province":"重庆市","vehicleCount":0},
+        {"provinceCode":530000,"province":"云南省","vehicleCount":0},
+        {"provinceCode":110000,"province":"北京市","vehicleCount":0},
+        {"provinceCode":620000,"province":"甘肃省","vehicleCount":0},
+        {"provinceCode":610000,"province":"陕西省","vehicleCount":0},
+        {"provinceCode":370000,"province":"山东省","vehicleCount":0},
+        {"provinceCode":330000,"province":"浙江省","vehicleCount":1},
+        {"provinceCode":150000,"province":"内蒙古自治区","vehicleCount":0},
+        {"provinceCode":630000,"province":"青海省","vehicleCount":0},
+        {"provinceCode":210000,"province":"辽宁省","vehicleCount":0},
+        {"provinceCode":120000,"province":"天津市","vehicleCount":0},
+        {"provinceCode":710000,"province":"台湾省","vehicleCount":0},
+        {"provinceCode":230000,"province":"黑龙江省","vehicleCount":0},
+        {"provinceCode":140000,"province":"山西省","vehicleCount":0}
+      ]
+      this.requestGetChinaJson()
     },
 
     //绘制全国地图
@@ -106,7 +132,6 @@ export default {
           mapType: map,
           ...mapOption.seriesOption,
           data: data,
-  
         },
       ]
       // this.option.dataRange = mapOption.dataRange

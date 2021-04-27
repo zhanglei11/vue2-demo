@@ -1,15 +1,7 @@
-<!--
- * @Author: your name
- * @Date: 2020-12-17 08:45:02
- * @LastEditTime: 2020-12-18 10:02:28
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /postloan-warning-front/src/views/big_screen/components/centerLeft1.vue
--->
 <template>
   <dv-border-box-12 id="centreLeft1">
     <el-row>
-      <el-col class="rol-title">      
+      <el-col class="rol-title">
         <span class="toAD" v-for="(item, index) in toDayLocusCountArr" :key="index">
           <div
             class="qwNumBox"
@@ -28,9 +20,6 @@
   </dv-border-box-12>
 </template>
 <script>
-import {
-  data_open, //案件列表
-} from "@/api/bigData";
 import './index.less'
 export default {
   data() {
@@ -54,17 +43,7 @@ export default {
   },
   methods: {
     init(){
-      data_open().then((res) => {
-        if (res.returnCode == "200") {
-          this.toDayLocusCountArr = String(res.returnData.toDayLocusCount).split('')
-        } else {
-          this.$message({
-            message: !!!res.userMessage?'服务异常':res.userMessage,
-            type: 'error',
-            duration:1000
-          });
-        }
-      })
+      this.toDayLocusCountArr = String(parseInt(Math.random()*(10000),10)).split('')
     }
   }
 };

@@ -6,7 +6,7 @@
       <el-col>北纬：{{ lat }}</el-col>
       <el-col>东经：{{ lng }}</el-col>
     </el-row>
-    <el-row class="qiche" v-if="isShow">
+    <el-row class="qiche">
       <el-col class="qiche-gundong">
         <div class="img">
           <template v-if="initNumHis === 1">
@@ -45,25 +45,21 @@
   </dv-border-box-12>
 </template>
 <script>
-import {
-  data_open_vehicle, //案件列表
-} from '@/api/bigData'
 import './index.less'
 export default {
   data() {
     return {
       carList:[1,2,3,4,5,6,7,8,9,10],
       licenseArr: [],
-      licenseNumber: '',
-      vin: '',
-      lat: '',
-      lng: '',
+      licenseNumber: '45**78',
+      vin: '*****',
+      lat: '****12',
+      lng: '****67',
       timer: null,
       initNum: 0,
       initNumB: 0,
       imgSrc: '',
       initNumHis: 0,
-      isShow:false,
     }
   },
   created() {
@@ -74,14 +70,13 @@ export default {
     this.timer = setInterval(() => {
       this.init()
     }, 10000)
-    this.isShow = true
   },
   beforeDestroy() {
     clearInterval(this.timer)
     this.timer = null
   },
   methods: {
-    init(type) {
+    init() {
       this.initNum = this.initNum + 1
       this.initNumB = this.initNumB + 1
       if (this.initNum > 10) {
@@ -89,34 +84,6 @@ export default {
       }
       let num = JSON.parse(JSON.stringify(this.initNum))
       this.initNumHis = num
-      let param = {
-        licenseNumber: this.licenseNumber === '' ? null : this.licenseNumber,
-      }
-      data_open_vehicle()
-        .then((res) => {
-          if (res.returnCode == '200') {
-            this.licenseNumber = this.replaceStr2(
-              res.returnData.licenseNumber,
-              2
-            )
-            this.vin = this.replaceStr1(res.returnData.vin, 6)
-            this.lat = res.returnData.lat
-            this.lng = res.returnData.lng
-          } else {
-            this.$message.error(
-              res.userMessage == null ? '服务异常' : res.userMessage
-            )
-          }
-        })
-        .catch(() => {})
-    },
-    replaceStr2(str, index) {
-      let name = str.substring(0, index) + '***' + str.substring(index + 3)
-      return name
-    },
-    replaceStr1(str, index) {
-      let name = str.substring(0, index) + '******' + str.substring(index + 6)
-      return name
     },
   },
 }
