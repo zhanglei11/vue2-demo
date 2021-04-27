@@ -1,6 +1,6 @@
 <template>
   <el-container class="home-global">
-    <comHeader activeIndex="1"></comHeader>
+    <comHeader activeIndex="001"></comHeader>
     <el-aside width="214px" style="margin-top:56px">    
       <el-menu
         unique-opened
@@ -83,7 +83,7 @@ export default {
   methods: {
     // 保存连接的激活地址
     saveNavState(subItem) {
-      console.log(subItem)
+      // console.log(subItem)
       this.$router.push({
         path:subItem.path,
       })
@@ -117,7 +117,7 @@ export default {
         font-weight: 500;
         color: #242D33 !important;
         text-align: left;
-        &:focus,&:focus>i,&:hover,&:hover>i,&.is-active,&.is-active>i{
+        &:focus,&:hover,&.is-active{
           color: #3E6EF6 !important;
           background-color: initial;
           outline: 0;
@@ -127,22 +127,11 @@ export default {
         font-weight: 500;
         color: #242D33 !important;
         text-align:left;
-        // i{
-        //   font-size: 14px;
-        //   margin-right: 8px;
-        //   margin-left: 12px;
-        //   color: #242D33 !important;
-        // }
-        &:focus,&:focus>i,&:hover,&:hover>i,&.is-active,&.is-active>i{
+        &:focus,&:hover,&.is-active{
           color: #3E6EF6 !important;
           background-color: initial;
           outline: 0;
         }
-        // &:focus,&:focus>i,&:hover,&:hover>i,&.is-active,&.is-active>i{
-        //   color: #3E6EF6 !important;
-        //   background-color: #F5F9FF;
-        //   outline: 0;
-        // }
       }
     }
   }
@@ -152,10 +141,10 @@ export default {
     display: inline-block;
     padding: 0;
     flex: 1;
-    margin-top: 80px;
+    margin-top: 56px;
     margin-left: 214px;
     .home-main{
-      margin-top: 50px;
+      margin-top: 56px;
       overflow-y: auto;
     }
   }

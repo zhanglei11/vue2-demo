@@ -3,13 +3,13 @@
     <el-menu :default-active="activeIndex" class="el-menu-demo content" mode="horizontal" @select="handleSelect">
       <el-menu-item 
         v-for="(item,index) in topList" 
-        :index="item.name"
+        :index="item.id"
         :key="item.id">
         {{item.name}}
         </el-menu-item>
     </el-menu>
     <el-col class="name-image">
-      <el-col class="detail">项目展览</el-col>
+      <el-col class="detail">技术展览</el-col>
     </el-col>
     <div class="user">
       <div class="fl">
@@ -29,7 +29,6 @@
   </div>
 </template>
 <script>
-import menus from '@/menus'
 export default {
   name:'HEADER',
   props:{
@@ -44,8 +43,14 @@ export default {
       topList:[
       {
         name: 'vue2',
-        id:1,
+        id:'001',
         path: '/vue_list/list001',
+        children:[]
+      },
+      {
+        name: '大屏',
+        id:'002',
+        path: '/big_screen/index',
         children:[]
       },
     ]
@@ -53,6 +58,7 @@ export default {
   },
   methods:{
     handleSelect(key) {
+      console.log(key)
       let path 
       this.topList.filter(item => { 
         if( item.id == key) path = item.path
@@ -66,7 +72,9 @@ export default {
     },
   },
 
-  created() {},
+  created() {
+    console.log("created")
+  },
   computed: {},
   mounted() {},
 }

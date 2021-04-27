@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    大屏展示
+    ddddd
   </div>
 </template>
 <script>

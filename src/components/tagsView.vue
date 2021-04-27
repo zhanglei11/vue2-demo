@@ -124,8 +124,6 @@ export default {
 </script>
  <style lang="less" scoped>
   .tags-view-container {
-    // margin-top: 64px;
-    margin-left: 20px;
     .tags-view-wrapper {
       background: #fff;
       height: 34px;
