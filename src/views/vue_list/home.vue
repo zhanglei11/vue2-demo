@@ -1,6 +1,6 @@
 <template>
   <el-container class="home-global">
-    <comHeader activeIndex="001"></comHeader>
+    <ComHeader activeIndex="001"></ComHeader>
     <el-aside width="214px" style="margin-top:56px">    
       <el-menu
         unique-opened
@@ -49,7 +49,7 @@
   </el-container>
 </template>
 <script>
-import comHeader from '@/components/header'
+import ComHeader from '@/components/header'
 import tagsView from '@/components/tagsView'
 import { getWindowHeight } from "@/utils/windowHeight";
 import { globalBus } from '@/utils/globalBus'
@@ -57,7 +57,7 @@ import menus from '@/menus'
 export default {
   name:'HOME',
   components: {
-    comHeader,
+    ComHeader,
     tagsView,
   },
   data() {
@@ -83,7 +83,6 @@ export default {
   methods: {
     // 保存连接的激活地址
     saveNavState(subItem) {
-      // console.log(subItem)
       this.$router.push({
         path:subItem.path,
       })

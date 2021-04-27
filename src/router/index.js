@@ -2,9 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import vueRouter from './vueRouter'
 import bigScreenRouter from './big_screen'
+import screenRouter from './screen'
 const Routers = [
   ...vueRouter,
-  ...bigScreenRouter
+  ...bigScreenRouter,
+  ...screenRouter
 ]
 // 路由配置
 const RouterConfig = {

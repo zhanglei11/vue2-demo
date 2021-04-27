@@ -9,9 +9,7 @@ const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 30000 // request timeout
 })
-let blodURL = [
-
-] //导出表格
+let blodURL = [] //导出表格
 
 // 添加请求拦截器
 service.interceptors.request.use(
@@ -24,7 +22,6 @@ service.interceptors.request.use(
     }
     return config
   },
-
   error => {
     // 请求错误时做些事
     return Promise.reject(error)
@@ -34,11 +31,6 @@ service.interceptors.request.use(
 // 添加响应拦截器
 service.interceptors.response.use( response => {
     const res = response.data
-    // console.log(res.code !== 0 && res.code != undefined);
-    // console.log("------------");
-    // console.log(res.returnCode);
-    // console.log(res.returnCode != '200' && res.returnCode != undefined);
-    // if ((res.code !== 0 && res.code != undefined) || (res.returnCode != '200' && res.returnCode != undefined) ) {
     if ((res.code !== 0 && res.code != undefined)) {
       console.log('登录失败');
       Message({
@@ -47,28 +39,19 @@ service.interceptors.response.use( response => {
         duration: 5 * 1000
       })
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      // if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-      //   // to re-login
-      //   MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-      //     confirmButtonText: 'Re-Login',
-      //     cancelButtonText: 'Cancel',
-      //     type: 'warning'
-      //   }).then(() => {
-      //     store.dispatch('user/resetToken').then(() => {
-      //       location.reload()
-      //     })
-      //   })
-      // }
       removeToken()
-      // location.reload()
+      router.push({name: 'login'}) 
       Message.closeAll()
-      setTimeout(() => {
-        router.push({
-          name: 'login'
-        })    
-      }, 1500);
-      return Promise.reject(new Error(res.msg || 'Error'))
+      if (res.msg.indexOf('会话已过期，请刷新浏览器重新进行登录') > -1) {
+        Message({
+          message: res.msg,
+          type: 'error',
+          duration: 3 * 1000
+        })
+        return res
+      }else{
+        return Promise.reject(new Error(res.msg || 'Error'))
+      }
     } else {
       return res
     }
@@ -82,14 +65,6 @@ service.interceptors.response.use( response => {
       // 为了控制 登录页面只显示一个$message（登录过期，请重新登录）
       Message.closeAll()
     }
-    // if (error.message.indexOf('Request failed with status code 500') > -1) {
-    //   error.message = '登录过期，请重新登录'
-    //   router.push({
-    //     name: 'login'
-    //   })
-    //   // 为了控制 登录页面只显示一个$message（登录过期，请重新登录）
-    //   Message.closeAll()
-    // }
     Message({
       message: error.message,
       type: 'error',

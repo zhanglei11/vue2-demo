@@ -1,18 +1,3 @@
-//文档高度
-// export const getDocumentTop = () => {
-//   let scrollTop = 0,
-//     bodyScrollTop = 0,
-//     documentScrollTop = 0;
-//   if (document.body) {
-//     bodyScrollTop = document.body.scrollTop;
-//   }
-//   if (document.documentElement) {
-//     documentScrollTop = document.documentElement.scrollTop;
-//   }
-//   scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
-//   return scrollTop;
-// }
-
 //可视窗口宽度
 export const getWindowWidth = () => {
   let windowWidth = 0;

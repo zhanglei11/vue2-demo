@@ -13,10 +13,19 @@ const router = [
         path: prefix + '/index',
         name: 'bigScreenIndex',
         meta: {
-          title: '规划2',
+          title: '大屏列表',
           keeplive:true,
         },
         component: (resolve) => require(['@/views/big_screen/index'], resolve),
+      },
+      {
+        path: prefix + '/xs/index',
+        name: 'bigScreenShow',
+        meta: {
+          title: '大数据展板',
+          keeplive:false,
+        },
+        component: (resolve) => require(['@/views/big_screen/bigScreen/index'], resolve),
       },
       // {
       //   path: prefix + '/list002',

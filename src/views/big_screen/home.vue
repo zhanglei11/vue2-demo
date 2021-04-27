@@ -1,55 +1,25 @@
 <template>
   <el-container class="home-global-big">
-    <comHeader activeIndex="002"></comHeader>
+    <ComHeader activeIndex="002"></ComHeader>
     <el-main>
-      <router-view :key="activePath" v-if="$route.meta.keeplive"/>
+      <router-view />
     </el-main>
   </el-container>
 </template>
 <script>
-import comHeader from '@/components/header'
-import { getWindowHeight } from "@/utils/windowHeight";
-import { globalBus } from '@/utils/globalBus'
-import menus from '@/menus'
+import ComHeader from '@/components/header'
 export default {
-  name:'HOME',
+  name:'HOMEBIG',
   components: {
-    comHeader,
+    ComHeader,
   },
   data() {
-    return {
-      asideList:menus['vueMenus'],
-      asideHeight:'',
-    }
+    return {}
   },
-  created() {
-    this.asideHeight = getWindowHeight() - 130;
-    this.backTop()
-  },
-  watch: {
-    $route(to, from) {
-      this.$refs['appScrollbar'].wrap.scrollTop = 0
-    },
-  },
-  computed: {
-    activePath () {
-      return this.$route.path
-    },
-  },
-  methods: {
-    // 保存连接的激活地址
-    saveNavState(subItem) {
-      // console.log(subItem)
-      this.$router.push({
-        path:subItem.path,
-      })
-    },
-    backTop() {
-      globalBus.$on('backtop', () => {
-        this.$refs['appScrollbar'].wrap.scrollTop = 0
-      })
-    },
-  },
+  created() {},
+  watch: {},
+  computed: {},
+  methods: {},
 }
 </script>
 
@@ -64,10 +34,6 @@ export default {
     padding: 0;
     flex: 1;
     margin-top: 56px;
-    .home-main{
-      margin-top: 56px;
-      overflow-y: auto;
-    }
   }
 }
 
